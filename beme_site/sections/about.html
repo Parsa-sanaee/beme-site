@@ -1,0 +1,170 @@
+<h2>About</h2>
+<p>این یک وب‌اپ SPA مدرن و خفن با CSS و JS حرفه‌ای است.</p>
+<ul>
+  <li>SPA واقعی</li>
+  <li>منوی اسلایدی با آیکون ☰</li>
+  <li>Chatbot با انیمیشن و micro-interactions</li>
+</ul>
+
+const sections = {
+  home: `<section id="home" class="welcome card">
+           <h2>خوش آمدید 👋</h2>
+           <p>این یک SPA حرفه‌ای است. برای اطلاعات کامل درباره بیمه‌ها، از منو گزینه "بیمه‌ها" را انتخاب کنید.</p>
+         </section>`,
+
+  about: `<section id="about" class="card">
+            <h2>درباره</h2>
+            <p>این یک وب‌اپ SPA مدرن و خفن با CSS و JS حرفه‌ای است.</p>
+            <ul>
+              <li>SPA واقعی</li>
+              <li>منوی اسلایدی با آیکون ☰</li>
+              <li>Chatbot با انیمیشن و micro-interactions</li>
+            </ul>
+          </section>`,
+
+  chatbot: `<section id="chatbot" class="card">
+              <h2>Chatbot 🤖</h2>
+              <div class="chat-container">
+                <div id="chat-box"></div>
+                <div class="chat-input">
+                  <input id="user-input" placeholder="پیام خود را بنویسید..." />
+                  <button id="send-btn">ارسال</button>
+                </div>
+              </div>
+            </section>`,
+
+  insurance: `
+<section id="insurance" class="insurance-landing card">
+  <h2>بیمه‌های محبوب و پرکاربرد ایران</h2>
+  <p>این بخش شامل بیش از ۲۰ نوع بیمه محبوب و پرکاربرد ایران است. روی هر کارت کلیک کنید تا توضیحات کامل و خرید نمایش داده شود.</p>
+
+  <div class="insurance-grid">
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه درمان">
+      <h3>بیمه درمان</h3>
+      <p>پوشش کامل هزینه‌های پزشکی، بستری و داروهای تجویزی.</p>
+      <button class="buy-btn">خرید بیمه درمان</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه عمر">
+      <h3>بیمه عمر</h3>
+      <p>تضمین آینده خانواده و سرمایه‌گذاری بلندمدت.</p>
+      <button class="buy-btn">خرید بیمه عمر</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg?auto=compress&cs=tinysrgb&w=500" alt="بیمه خودرو">
+      <h3>بیمه خودرو</h3>
+      <p>محافظت خودرو در برابر خسارت، سرقت و تصادف.</p>
+      <button class="buy-btn">خرید بیمه خودرو</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه مسافرتی">
+      <h3>بیمه مسافرتی</h3>
+      <p>سفر امن و بدون نگرانی، شامل لغو پرواز و بیمه پزشکی.</p>
+      <button class="buy-btn">خرید بیمه مسافرتی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه منزل">
+      <h3>بیمه منزل و آتش‌سوزی</h3>
+      <p>محافظت خانه و دارایی‌ها در برابر حوادث و آتش‌سوزی.</p>
+      <button class="buy-btn">خرید بیمه منزل</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه مسئولیت">
+      <h3>بیمه مسئولیت مدنی</h3>
+      <p>محافظت در برابر خسارت مالی به دیگران.</p>
+      <button class="buy-btn">خرید بیمه مسئولیت</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه حوادث">
+      <h3>بیمه حوادث فردی و گروهی</h3>
+      <p>پوشش حوادث و صدمات جسمی برای افراد و کارکنان شرکت‌ها.</p>
+      <button class="buy-btn">خرید بیمه حوادث</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1562887189-e5d078343de4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه باربری">
+      <h3>بیمه باربری و حمل‌ونقل</h3>
+      <p>محافظت کالا و بار در حمل‌ونقل داخلی و خارجی.</p>
+      <button class="buy-btn">خرید بیمه باربری</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه تکمیلی">
+      <h3>بیمه درمان تکمیلی</h3>
+      <p>پوشش هزینه‌های پزشکی که بیمه پایه پوشش نمی‌دهد.</p>
+      <button class="buy-btn">خرید بیمه تکمیلی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه سازمانی">
+      <h3>بیمه سازمان‌ها و شرکت‌ها</h3>
+      <p>پوشش جامع کارکنان و دارایی‌ها با طرح‌های اختصاصی برای سازمان‌ها.</p>
+      <button class="buy-btn">خرید بیمه سازمانی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه مهندسی">
+      <h3>بیمه مهندسی</h3>
+      <p>پوشش پروژه‌های ساختمانی و تأسیسات در برابر حوادث.</p>
+      <button class="buy-btn">خرید بیمه مهندسی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه کشاورزی">
+      <h3>بیمه کشاورزی</h3>
+      <p>محافظت محصولات کشاورزی در برابر بلایای طبیعی.</p>
+      <button class="buy-btn">خرید بیمه کشاورزی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه آموزشی">
+      <h3>بیمه آموزشی</h3>
+      <p>تضمین ادامه تحصیل در صورت فوت یا ازکارافتادگی سرپرست.</p>
+      <button class="buy-btn">خرید بیمه آموزشی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه حیوانات">
+      <h3>بیمه حیوانات خانگی</h3>
+      <p>پوشش درمانی حیوانات خانگی و هزینه‌های دامپزشکی.</p>
+      <button class="buy-btn">خرید بیمه حیوانات</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه ورزشی">
+      <h3>بیمه ورزشی</h3>
+      <p>محافظت ورزشکاران در برابر مصدومیت‌های حین تمرین و مسابقه.</p>
+      <button class="buy-btn">خرید بیمه ورزشی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه سایبری">
+      <h3>بیمه سایبری</h3>
+      <p>محافظت در برابر حملات سایبری و نشت اطلاعات.</p>
+      <button class="buy-btn">خرید بیمه سایبری</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه آثار هنری">
+      <h3>بیمه آثار هنری</h3>
+      <p>محافظت آثار هنری، عتیقه‌جات و مجموعه‌های ارزشمند.</p>
+      <button class="buy-btn">خرید بیمه آثار هنری</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه دریایی">
+      <h3>بیمه دریایی</h3>
+      <p>پوشش کشتی‌ها، محموله‌های دریایی و مسئولیت‌های مرتبط.</p>
+      <button class="buy-btn">خرید بیمه دریایی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه هواپیما">
+      <h3>بیمه هواپیما</h3>
+      <p>پوشش هواپیماهای شخصی و تجاری در برابر حوادث.</p>
+      <button class="buy-btn">خرید بیمه هواپیما</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="بیمه انرژی">
+      <h3>بیمه انرژی</h3>
+      <p>محافظت تأسیسات نفتی، گازی و انرژی‌های تجدیدپذیر.</p>
+      <button class="buy-btn">خرید بیمه انرژی</button>
+    </div>
+    <div class="insurance-card">
+      <img src="https://images.pexels.com/photos/259965/freight-container-cargo-container-ship-259965.jpeg?auto=compress&cs=tinysrgb&w=500" alt="بیمه کالا">
+      <h3>بیمه کالاهای تجاری</h3>
+      <p>محافظت کالاهای تجاری در انبار و هنگام حمل‌ونقل.</p>
+      <button class="buy-btn">خرید بیمه کالا</button>
+    </div>
+  </div>
+</section>`
+};

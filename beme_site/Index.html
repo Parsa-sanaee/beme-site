@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPA حرفه‌ای بیمه</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button id="menu-btn" class="menu-btn">☰</button>
+    <h1 class="app-title">SPA بیمه</h1>
+<!--    <button id="theme-toggle" class="theme-toggle">🌙</button>-->
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <nav class="menu">
+      <button data-section="home">خانه</button>
+      <button data-section="insurance">بیمه‌ها</button>
+      <button data-section="about">درباره</button>
+      <button data-section="chatbot">چت‌بات</button>
+    </nav>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main id="content">
+    <section id="home" class="welcome card">
+      <h2>خوش آمدید 👋</h2>
+      <p>این یک SPA حرفه‌ای است. برای اطلاعات کامل درباره بیمه‌ها، از منو گزینه "بیمه‌ها" را انتخاب کنید.</p>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const menuBtn = document.getElementById("menu-btn");
+const content = document.getElementById("content");
+const themeToggle = document.getElementById("theme-toggle");
+
+/* باز و بسته کردن منو */
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+  menuBtn.classList.toggle("active");
+});
+overlay.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+  menuBtn.classList.remove("active");
+});
+
+/* تم شب و روز */
+themeToggle.addEventListener("click", () => {
+  if (document.body.dataset.theme === "light") {
+    document.body.dataset.theme = "dark";
+    themeToggle.textContent = "☀️";
+  } else {
+    document.body.dataset.theme = "light";
+    themeToggle.textContent = "🌙";
+  }
+});
+
+/* بخش‌ها */
+const sections = {
+  home: `<section id="home" class="welcome card">
+           <h2>خوش آمدید 👋</h2>
+           <p>این یک SPA حرفه‌ای است. برای اطلاعات کامل درباره بیمه‌ها، از منو گزینه "بیمه‌ها" را انتخاب کنید.</p>
+         </section>`,
+
+  about: `<section id="about" class="card">
+            <h2>درباره</h2>
+            <p>این یک وب‌اپ SPA مدرن و خفن با CSS و JS حرفه‌ای است.</p>
+            <ul>
+              <li>SPA واقعی</li>
+              <li>منوی اسلایدی با آیکون ☰</li>
+              <li>Chatbot با انیمیشن و micro-interactions</li>
+            </ul>
+          </section>`,
+
+  chatbot: `<section id="chatbot" class="card">
+              <h2>Chatbot 🤖</h2>
+              <div class="chat-container">
+                <div id="chat-box"></div>
+                <div class="chat-input">
+                  <input id="user-input" placeholder="پیام خود را بنویسید..." />
+                  <button id="send-btn">ارسال</button>
+                </div>
+              </div>
+            </section>`,
+
+  insurance: `
+<section id="insurance" class="insurance-landing card">
+  <h2>بیمه‌های محبوب و پرکاربرد ایران</h2>
+  <p>این بخش شامل بیش از ۲۰ نوع بیمه محبوب و پرکاربرد ایران است. روی هر کارت کلیک کنید تا توضیحات کامل و خرید نمایش داده شود.</p>
+
+  <div class="insurance-grid">
+    <div class="insurance-card">
+<!--      <img src="images/health-insurance.jpg" alt="بیمه درمان">-->
+      <h3>بیمه درمان</h3>
+      <p>پوشش کامل هزینه‌های پزشکی، بستری و داروهای تجویزی.</p>
+      <button class="buy-btn">خرید بیمه درمان</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/life-insurance.jpg" alt="بیمه عمر">-->
+      <h3>بیمه عمر</h3>
+      <p>تضمین آینده خانواده و سرمایه‌گذاری بلندمدت.</p>
+      <button class="buy-btn">خرید بیمه عمر</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/car-insurance.jpg" alt="بیمه خودرو">-->
+      <h3>بیمه خودرو</h3>
+      <p>محافظت خودرو در برابر خسارت، سرقت و تصادف.</p>
+      <button class="buy-btn">خرید بیمه خودرو</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/travel-insurance.jpg" alt="بیمه مسافرتی">-->
+      <h3>بیمه مسافرتی</h3>
+      <p>سفر امن و بدون نگرانی، شامل لغو پرواز و بیمه پزشکی.</p>
+      <button class="buy-btn">خرید بیمه مسافرتی</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/fire-insurance.jpg" alt="بیمه آتش‌سوزی و منزل">-->
+      <h3>بیمه منزل و آتش‌سوزی</h3>
+      <p>محافظت خانه و دارایی‌ها در برابر حوادث و آتش‌سوزی.</p>
+      <button class="buy-btn">خرید بیمه منزل</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/liability-insurance.jpg" alt="بیمه مسئولیت">-->
+      <h3>بیمه مسئولیت مدنی</h3>
+      <p>محافظت در برابر خسارت مالی به دیگران.</p>
+      <button class="buy-btn">خرید بیمه مسئولیت</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/accident-insurance.jpg" alt="بیمه حوادث">-->
+      <h3>بیمه حوادث فردی و گروهی</h3>
+      <p>پوشش حوادث و صدمات جسمی برای افراد و کارکنان شرکت‌ها.</p>
+      <button class="buy-btn">خرید بیمه حوادث</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/transport-insurance.jpg" alt="بیمه باربری و حمل‌ونقل">-->
+      <h3>بیمه باربری و حمل‌ونقل</h3>
+      <p>محافظت کالا و بار در حمل‌ونقل داخلی و خارجی.</p>
+      <button class="buy-btn">خرید بیمه باربری</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/supplemental-health.jpg" alt="بیمه درمان تکمیلی">-->
+      <h3>بیمه درمان تکمیلی</h3>
+      <p>پوشش هزینه‌های پزشکی که بیمه پایه پوشش نمی‌دهد.</p>
+      <button class="buy-btn">خرید بیمه تکمیلی</button>
+    </div>
+    <div class="insurance-card">
+<!--      <img src="images/corporate-insurance.jpg" alt="بیمه سازمانی">-->
+      <h3>بیمه سازمان‌ها و شرکت‌ها</h3>
+      <p>پوشش جامع کارکنان و دارایی‌ها با طرح‌های اختصاصی برای سازمان‌ها.</p>
+      <button class="buy-btn">خرید بیمه سازمانی</button>
+    </div>
+  </div>
+</section>`
+};
+
+/* کلیک روی دکمه‌های منو */
+document.querySelectorAll(".sidebar button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const section = btn.dataset.section;
+    if (sections[section]) {
+      content.innerHTML = sections[section];
+      window.scrollTo(0, 0);
+
+      // لود چت بات اگر نیاز باشد
+      if (section === 'chatbot') {
+        setTimeout(() => {
+          const chatBox = document.getElementById("chat-box");
+          const input = document.getElementById("user-input");
+          const sendBtn = document.getElementById("send-btn");
+
+          if (chatBox && input && sendBtn) {
+            sendBtn.onclick = () => {
+              if (!input.value.trim()) return;
+
+              const div = document.createElement("div");
+              div.className = "message user";
+              div.innerHTML = `<b>شما:</b> ${input.value}`;
+              chatBox.appendChild(div);
+              input.value = "";
+              chatBox.scrollTop = chatBox.scrollHeight;
+
+              setTimeout(() => {
+                const botDiv = document.createElement("div");
+                botDiv.className = "message bot";
+                botDiv.innerHTML = `<b>بات:</b> من هنوز ساده‌ام ولی خیلی خوش‌اخلاقم 😄`;
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+              }, 500);
+            };
+
+            // پیام خوش‌آمد
+            setTimeout(() => {
+              const welcomeDiv = document.createElement("div");
+              welcomeDiv.className = "message bot";
+              welcomeDiv.innerHTML = `<b>بات:</b> سلام! من چت بات شما هستم. چطور می‌تونم کمکتون کنم؟`;
+              chatBox.appendChild(welcomeDiv);
+              chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1000);
+          }
+        }, 100);
+      }
+
+      // دکمه خرید
+      content.addEventListener('click', (e) => {
+        if (e.target.classList.contains('buy-btn')) {
+          const card = e.target.closest('.insurance-card');
+          const title = card?.querySelector('h3')?.textContent || 'بیمه';
+          alert(`🎉 شما قصد خرید "${title}" را دارید. (این یک دمو است)`);
+        }
+      });
+    }
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    menuBtn.classList.remove("active");
+  });
+});
+</script>
+
+</body>
+</html>
